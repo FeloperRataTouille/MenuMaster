@@ -25,7 +25,25 @@ return new class extends Migration
      * Reverse the migrations.
      */
     public function down(): void
-    {
-        Schema::dropIfExists('pedidos');
-    }
+{
+    Schema::table('pedidos', function (Blueprint $table) {
+        // O nome da chave estrangeira precisa ser o mesmo usado ao criá-la
+        $table->dropForeign(['prato_id']); // Substitua 'prato_id' pelo nome correto da chave estrangeira
+
+        // Remove a coluna que referencia a tabela pratos
+        $table->dropColumn('prato_id');
+    });
+
+    Schema::table('pedidos', function (Blueprint $table) {
+        // O nome da chave estrangeira precisa ser o mesmo usado ao criá-la
+        $table->dropForeign(['comanda_id']); // Substitua 'prato_id' pelo nome correto da chave estrangeira
+
+        // Remove a coluna que referencia a tabela pratos
+        $table->dropColumn('comanda_id');
+    });
+
+    // Remova a tabela pratos
+    Schema::dropIfExists('pratos');
+}
+
 };

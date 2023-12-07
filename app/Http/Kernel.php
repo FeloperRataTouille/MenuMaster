@@ -7,12 +7,19 @@ use Illuminate\Foundation\Http\Kernel as HttpKernel;
 class Kernel extends HttpKernel
 {
     /**
+     
      * The application's global HTTP middleware stack.
      *
      * These middleware are run during every request to your application.
      *
      * @var array<int, class-string|string>
      */
+
+     protected $routeMiddleware = [
+        'verificarComanda' => \App\Http\Middleware\VerificarComanda::class,
+    ];
+    
+
     protected $middleware = [
         // \App\Http\Middleware\TrustHosts::class,
         \App\Http\Middleware\TrustProxies::class,

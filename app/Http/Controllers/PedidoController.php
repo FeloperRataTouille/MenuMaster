@@ -17,6 +17,7 @@ class PedidoController extends Controller
         ];
 
         Pedido::create($data);
+        $request->session()->put('comandaAtiva', true);
         return redirect('cardapio');
     }
 
